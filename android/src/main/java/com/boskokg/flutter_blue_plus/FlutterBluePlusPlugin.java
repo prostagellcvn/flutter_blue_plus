@@ -351,7 +351,7 @@ public class FlutterBluePlusPlugin implements FlutterPlugin, MethodCallHandler, 
 
           // New request, connect and add gattServer to Map
           BluetoothGatt gattServer;
-          if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+          if (Build.VERSION.SDK_INT >= 33) {
             gattServer = device.connectGatt(context, options.getAndroidAutoConnect(), mGattCallback, BluetoothDevice.TRANSPORT_LE);
           } else {
             gattServer = device.connectGatt(context, options.getAndroidAutoConnect(), mGattCallback);
@@ -834,7 +834,7 @@ public class FlutterBluePlusPlugin implements FlutterPlugin, MethodCallHandler, 
       if (Build.VERSION.SDK_INT > Build.VERSION_CODES.UPSIDE_DOWN_CAKE){
             // Google in 2023 decides that flag RECEIVER_NOT_EXPORTED or RECEIVER_EXPORTED should be explicit set SDK 32(UPSIDE_DOWN_CAKE) on registering receivers.
             // Also the export flags are available on Android 8 and higher, should be used with caution so that don't break compability with that devices.
-            context.registerReceiver(mReceiver, filter, ContextCompat.RECEIVER_NOT_EXPORTED);
+            context.registerReceiver(mReceiver, filter,Context.RECEIVER_NOT_EXPORTED);
         }else {
             context.registerReceiver(mReceiver, filter);
       }
